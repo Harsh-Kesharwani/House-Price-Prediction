@@ -179,4 +179,31 @@ MIT License
 
 ---
 
+##House Price Prediction Report
+##Approach & Decisions
+
+Data Preparation: We used the California housing dataset and performed exploratory data analysis (EDA) using correlation matrices and distribution plots.
+
+Preprocessing: Missing values were checked, and features were standardized using StandardScaler for better model performance.
+
+Model Selection: Four regression models were tested—Linear Regression, Decision Tree, Random Forest, and XGBoost.
+
+Hyperparameter Tuning: GridSearchCV was applied to Decision Tree, Random Forest, and XGBoost to find the best parameters.
+
+Evaluation Metrics: Models were evaluated using RMSE, MAE, and R² scores.
+
+##Model Performance
+
+Linear Regression: Baseline model with RMSE of 0.7456 and R² of 0.5758.
+
+Decision Tree: Improved performance (RMSE: 0.6454, R²: 0.6822) after tuning.
+
+Random Forest: Performed better with RMSE 0.5444 and R² 0.7738.
+
+XGBoost: Best model with RMSE 0.4689 and R² 0.8322.
+
+##Conclusion
+
+XGBoost outperformed other models and was saved as the final model. This approach effectively handled housing price prediction using regression techniques and hyperparameter tuning.
+
 **Happy House Price Predicting!** 🏘️📈
