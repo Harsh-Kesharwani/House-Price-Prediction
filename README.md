@@ -179,31 +179,28 @@ MIT License
 
 ---
 
-##House Price Prediction Report
-##Approach & Decisions
+🏡 House Price Prediction Report
+📌 Approach & Decisions
+Data Preparation: Used the California Housing dataset and conducted Exploratory Data Analysis (EDA) with correlation matrices and distribution plots.
 
-Data Preparation: We used the California housing dataset and performed exploratory data analysis (EDA) using correlation matrices and distribution plots.
+Preprocessing: Checked for missing values and standardized features using StandardScaler for better model performance.
 
-Preprocessing: Missing values were checked, and features were standardized using StandardScaler for better model performance.
+Model Selection: Evaluated Linear Regression, Decision Tree, Random Forest, and XGBoost for regression.
 
-Model Selection: Four regression models were tested—Linear Regression, Decision Tree, Random Forest, and XGBoost.
+Hyperparameter Tuning: Applied GridSearchCV to optimize Decision Tree, Random Forest, and XGBoost models.
 
-Hyperparameter Tuning: GridSearchCV was applied to Decision Tree, Random Forest, and XGBoost to find the best parameters.
+Evaluation Metrics: Compared models using RMSE, MAE, and R² scores.
 
-Evaluation Metrics: Models were evaluated using RMSE, MAE, and R² scores.
+📊 Model Performance
+Model	RMSE	R² Score
+Linear Regression	0.7456	0.5758
+Decision Tree	0.6454	0.6822
+Random Forest	0.5444	0.7738
+XGBoost (Best Model)	0.4689	0.8322
+✅ Conclusion
+XGBoost outperformed all other models and was saved as the final predictor.
 
-##Model Performance
+Our approach effectively utilized regression techniques and hyperparameter tuning to achieve accurate house price predictions.
 
-Linear Regression: Baseline model with RMSE of 0.7456 and R² of 0.5758.
-
-Decision Tree: Improved performance (RMSE: 0.6454, R²: 0.6822) after tuning.
-
-Random Forest: Performed better with RMSE 0.5444 and R² 0.7738.
-
-XGBoost: Best model with RMSE 0.4689 and R² 0.8322.
-
-##Conclusion
-
-XGBoost outperformed other models and was saved as the final model. This approach effectively handled housing price prediction using regression techniques and hyperparameter tuning.
 
 **Happy House Price Predicting!** 🏘️📈
