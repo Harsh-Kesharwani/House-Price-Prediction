@@ -1,48 +1,46 @@
-import joblib
 import numpy as np
 import pandas as pd
 from typing import List, Dict, Union
 import xgboost as xgb
-import os 
-
+import os
+import pickle
 class HousePricePredictor:
     def __init__(self, model_path=None):
         """
         Initialize the predictor with a pre-trained model
         
         Args:
-            model_path (str, optional): Path to the saved model joblib file
+            model_path (str): Path to the saved model joblib file
         """
-        # Define potential model paths
-        possible_paths = [
-            model_path,  # User-provided path
-            os.path.join('notebook', 'best_house_price_model.joblib'),  # Relative path
-            os.path.join(os.path.dirname(__file__), '..', 'notebook', 'best_house_price_model.joblib'),  # Parent directory path
-            'best_house_price_model.joblib',  # Current directory
-            os.path.abspath('best_house_price_model.joblib')  # Absolute path
-        ]
+        self.model = None
+        self.model_path = model_path
         
-        # Try loading the model from multiple possible locations
-        for path in possible_paths:
-            if path and os.path.exists(path):
-                try:
-                    self.model = joblib.load(path)
-                    
-                    # If it's an XGBoost model, convert to Booster if needed
-                    if isinstance(self.model, xgb.XGBRegressor):
-                        self.model = self.model.get_booster()
-                    
-                    print(f"Model successfully loaded from {path}")
-                    return
-                except Exception as e:
-                    print(f"Error loading model from {path}: {e}")
+        if model_path is None:
+            model_directory = "./notebook"
+            for filename in os.listdir(model_directory):
+                print(f"filename: {filename}")
+                if filename.endswith(".pkl"):
+                    self.model_path = os.path.join(model_directory, filename)
+                    print(f"Found model: {self.model_path}")
+                    break
+
+        if self.model_path==None:
+            raise FileNotFoundError("No model file found in the specified directory.")
+
+
+        try:
+            with open(self.model_path, 'rb') as f:
+                self.model = pickle.load(f)
+            
+            # Convert XGBoost model to Booster if applicable
+            if isinstance(self.model, xgb.XGBRegressor):
+                self.model = self.model.get_booster()
+                print("Loaded XGBoost model as Booster.")
+            else:
+                print("Loaded model successfully.")
+        except Exception as e:
+            raise RuntimeError(f"Error loading model: {e}")
         
-        # If no model was found, raise an informative error
-        raise FileNotFoundError(
-            "Could not find the model file. "
-            "Please ensure 'best_house_price_model.joblib' is in one of these locations: "
-            "notebook/, current directory, or parent directory."
-        )
     
     def predict(self, features: Union[np.ndarray, List[float], Dict[str, float]]) -> float:
         """

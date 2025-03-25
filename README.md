@@ -1,4 +1,4 @@
-# 🏠 California House Price Prediction 
+# 🏠 California House Price Prediction
 
 ## 🌟 Project Overview
 
@@ -7,9 +7,13 @@ This project demonstrates a complete end-to-end machine learning workflow for pr
 
 ![Project Banner](https://via.placeholder.com/1200x300.png?text=California+House+Price+Prediction+ML+Project)
 
+## 🚀 Live Demo
+- **Frontend URL**: [House Price Prediction UI](https://house-price-prediction-1-9pla.onrender.com/)
+- **Backend API**: [FastAPI Docs](https://house-price-prediction-0cea.onrender.com/docs)
+
 ## 🚀 Key Features
 
-- **Machine Learning Model**: 
+- **Machine Learning Model**:
   - Advanced regression techniques
   - XGBoost predictor
   - Comprehensive model evaluation
@@ -100,7 +104,7 @@ uvicorn src.api.main:app --host localhost --port 8000
 streamlit run src.frontend.app
 ```
 
-## 📡 API Endpoints
+## 💼 API Endpoints
 
 ### Prediction Endpoint
 **URL**: `http://localhost:8000/predict`
@@ -162,7 +166,7 @@ streamlit run src.frontend.app
 
 ### 📌 Approach & Decisions
 
-**Data Preparation:** 
+**Data Preparation:**
 - Used the California Housing dataset
 - Conducted Exploratory Data Analysis (EDA)
 - Created correlation matrices and distribution plots
@@ -219,7 +223,7 @@ streamlit run src.frontend.app
 4. Push to the branch
 5. Create a Pull Request
 
-## 📜 License
+## 🐜 License
 
 MIT License
 
@@ -230,4 +234,5 @@ MIT License
 - FastAPI
 - Streamlit
 
-**Happy House Price Predicting!** 🏘️📈
+**Happy House Price Predicting!** 🏨📈
+
