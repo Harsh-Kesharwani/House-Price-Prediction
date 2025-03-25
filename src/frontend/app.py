@@ -60,7 +60,7 @@ def main():
         )
     
     # Display current API URL for transparency
-    st.sidebar.info(f"API URL: {api_url}")
+    # st.sidebar.info(f"API URL: {api_url}")
     
     # Prediction button
     if st.sidebar.button("Predict House Price"):
@@ -75,6 +75,7 @@ def main():
             if response.status_code == 200:
                 prediction = response.json()['predicted_price']
                 st.success(f"Predicted House Price: ${prediction * 100000:.2f}")
+                st.write("Predicted prices are in $100,000 units")
                 
                 # Additional insights
                 st.markdown("### Model Insights")

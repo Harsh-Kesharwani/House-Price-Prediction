@@ -35,7 +35,7 @@ This project demonstrates a complete end-to-end machine learning workflow for pr
 house-price-prediction/
 ├── notebook/
 │   └── best_house_price_model.joblib
-|   └──EDA_Training.ipynb
+│   └── EDA_Training.ipynb
 ├── src/
 │   ├── model/
 │   │   └── predict.py
@@ -158,6 +158,59 @@ streamlit run src.frontend.app
 | API_PORT       | Backend API Port           | 8000            |
 | API_PROTOCOL   | API Connection Protocol    | http            |
 
+## 🏡 House Price Prediction Report
+
+### 📌 Approach & Decisions
+
+**Data Preparation:** 
+- Used the California Housing dataset
+- Conducted Exploratory Data Analysis (EDA)
+- Created correlation matrices and distribution plots
+
+**Preprocessing:**
+- Checked for missing values
+- Standardized features using StandardScaler for improved model performance
+
+**Model Selection:**
+- Evaluated multiple regression algorithms:
+  - Linear Regression
+  - Decision Tree
+  - Random Forest
+  - XGBoost
+
+**Hyperparameter Tuning:**
+- Applied GridSearchCV to optimize:
+  - Decision Tree
+  - Random Forest
+  - XGBoost models
+
+**Evaluation Metrics:**
+- Compared models using:
+  - Root Mean Square Error (RMSE)
+  - Mean Absolute Error (MAE)
+  - R² Score
+
+### 📊 Detailed Model Performance Comparison
+
+| Model               | RMSE   | R² Score |
+|---------------------|--------|----------|
+| Linear Regression   | 0.7456 | 0.5758   |
+| Decision Tree       | 0.6454 | 0.6822   |
+| Random Forest       | 0.5444 | 0.7738   |
+| XGBoost (Best Model)| 0.4689 | 0.8322   |
+
+### ✅ Conclusion
+
+**Key Findings:**
+- XGBoost significantly outperformed all other models
+- Selected as the final predictor for house price predictions
+- Achieved high accuracy through comprehensive regression techniques and rigorous hyperparameter tuning
+
+**Final Model Highlights:**
+- Lowest RMSE: 0.4689
+- Highest R² Score: 0.8322
+- Robust and reliable house price prediction system
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -176,31 +229,5 @@ MIT License
 - XGBoost
 - FastAPI
 - Streamlit
-
----
-
-🏡 House Price Prediction Report
-📌 Approach & Decisions
-Data Preparation: Used the California Housing dataset and conducted Exploratory Data Analysis (EDA) with correlation matrices and distribution plots.
-
-Preprocessing: Checked for missing values and standardized features using StandardScaler for better model performance.
-
-Model Selection: Evaluated Linear Regression, Decision Tree, Random Forest, and XGBoost for regression.
-
-Hyperparameter Tuning: Applied GridSearchCV to optimize Decision Tree, Random Forest, and XGBoost models.
-
-Evaluation Metrics: Compared models using RMSE, MAE, and R² scores.
-
-📊 Model Performance
-Model	RMSE	R² Score
-Linear Regression	0.7456	0.5758
-Decision Tree	0.6454	0.6822
-Random Forest	0.5444	0.7738
-XGBoost (Best Model)	0.4689	0.8322
-✅ Conclusion
-XGBoost outperformed all other models and was saved as the final predictor.
-
-Our approach effectively utilized regression techniques and hyperparameter tuning to achieve accurate house price predictions.
-
 
 **Happy House Price Predicting!** 🏘️📈

@@ -3,27 +3,46 @@ import numpy as np
 import pandas as pd
 from typing import List, Dict, Union
 import xgboost as xgb
+import os 
 
 class HousePricePredictor:
-    def __init__(self, model_path='notebook/best_house_price_model.joblib'):
+    def __init__(self, model_path=None):
         """
         Initialize the predictor with a pre-trained model
         
         Args:
-            model_path (str): Path to the saved model joblib file
+            model_path (str, optional): Path to the saved model joblib file
         """
-        try:
-            # Try loading the model with joblib first
-            self.model = joblib.load(model_path)
-            
-            # If it's an XGBoost model, convert to Booster if needed
-            if isinstance(self.model, xgb.XGBRegressor):
-                self.model = self.model.get_booster()
-        except FileNotFoundError:
-            raise FileNotFoundError(f"Model not found at {model_path}")
-        except Exception as e:
-            print(f"Error loading model: {e}")
-            raise
+        # Define potential model paths
+        possible_paths = [
+            model_path,  # User-provided path
+            os.path.join('notebook', 'best_house_price_model.joblib'),  # Relative path
+            os.path.join(os.path.dirname(__file__), '..', 'notebook', 'best_house_price_model.joblib'),  # Parent directory path
+            'best_house_price_model.joblib',  # Current directory
+            os.path.abspath('best_house_price_model.joblib')  # Absolute path
+        ]
+        
+        # Try loading the model from multiple possible locations
+        for path in possible_paths:
+            if path and os.path.exists(path):
+                try:
+                    self.model = joblib.load(path)
+                    
+                    # If it's an XGBoost model, convert to Booster if needed
+                    if isinstance(self.model, xgb.XGBRegressor):
+                        self.model = self.model.get_booster()
+                    
+                    print(f"Model successfully loaded from {path}")
+                    return
+                except Exception as e:
+                    print(f"Error loading model from {path}: {e}")
+        
+        # If no model was found, raise an informative error
+        raise FileNotFoundError(
+            "Could not find the model file. "
+            "Please ensure 'best_house_price_model.joblib' is in one of these locations: "
+            "notebook/, current directory, or parent directory."
+        )
     
     def predict(self, features: Union[np.ndarray, List[float], Dict[str, float]]) -> float:
         """
